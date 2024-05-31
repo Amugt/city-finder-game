@@ -8,6 +8,7 @@ interface MapComponentProps {
 }
 
 const MapComponent: React.FC<MapComponentProps> = ({ onPinMove, pinPosition }) => {
+  
   const mapRef = useRef<L.Map | null>(null);
   const pinMarkerRef = useRef<L.Marker | null>(null);
 
@@ -27,7 +28,8 @@ const MapComponent: React.FC<MapComponentProps> = ({ onPinMove, pinPosition }) =
         attribution: '&copy; OpenStreetMap contributors, &copy; CartoDB',
         pane: 'labels' 
       }).addTo(map);
-
+   
+        //  GeoJSON data layer
       const geojson = L.geoJson(GeoJsonData, {
         onEachFeature: (feature, layer) => {
           layer.bindPopup(feature.properties.name);
@@ -72,7 +74,7 @@ const MapComponent: React.FC<MapComponentProps> = ({ onPinMove, pinPosition }) =
   }, [onPinMove, pinPosition]);
 
   return (
-    <div id="map" style={{ height: '500px', width:"800px" }} />
+    <div id="map"  style={{ height: '400px', width:"700px" }} />
   );
 };
 
